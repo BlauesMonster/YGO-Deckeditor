@@ -1,0 +1,68 @@
+<div class="main">
+  <div class="details"></div>
+
+  <div class="deck">
+    <div class="deck-menu">
+      <div class="menu-border">
+
+          <div class="test">
+            <div style="align-self: center;">
+              <label style="color: white;" for="name">Name: </label>
+              <input class="input-min" type="text" id="name" value="" size="1" placeholder="Name" />
+            </div>
+
+
+              <button class="btn">Deck leeren</button>
+
+
+
+
+          </div>
+          <div class="btn-group">
+            <button class="btn">Deck speichern</button>
+            <button class="btn">Deck teilen</button>
+            <button class="btn">Deck laden</button>
+          </div>
+
+      </div>
+
+
+<!--
+      <div>Number of Cards</div>
+      <div>Number of Cards</div> -->
+    </div>
+    <div class="all-decks">
+      <div class="maindeck">
+        <div class="main-h">Main</div>
+        <div class="cardzone" *ngFor="let item of maindeck; let i = index">
+          <div class="deck-number-circle">
+            <div class="deck-number-number">{{i+1 | number: '2.'}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="maindeck">
+        <div class="main-h">Extra</div>
+        <div class="cardzone" *ngFor="let item of extradeck; let i = index">
+          <div class="deck-number-circle">
+            <div class="deck-number-number">{{i+1 | number: '2.'}}</div>
+          </div>
+        </div>
+      </div>
+    <div class="maindeck">
+      <div class="main-h">Side</div>
+        <div class="cardzone" *ngFor="let item of sidedeck; let i = index">
+          <div class="deck-number-circle">
+            <div class="deck-number-number">{{i+1 | number: '2.'}}</div>
+          </div>
+        </div>
+    </div>
+    </div>
+
+
+  </div>
+
+  <div class="cardlist">
+    <div class="filter">Filter</div>
+    <div class="cardlist2"></div>
+  </div>
+</div>
