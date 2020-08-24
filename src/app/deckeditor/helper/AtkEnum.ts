@@ -1,0 +1,4 @@
+
+export enum AtkEnum {
+  Empty = "?"
+}

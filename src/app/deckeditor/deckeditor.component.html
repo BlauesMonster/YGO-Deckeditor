@@ -4,30 +4,29 @@
   <div class="deck">
     <div class="deck-menu">
       <div class="menu-border">
-
-          <div class="test">
-            <div style="align-self: center;">
-              <label style="color: white;" for="name">Name: </label>
-              <input class="input-min" type="text" id="name" value="" size="1" placeholder="Name" />
-            </div>
-
-
-              <button class="btn">Deck leeren</button>
-
-
-
-
-          </div>
-          <div class="btn-group">
-            <button class="btn">Deck speichern</button>
-            <button class="btn">Deck teilen</button>
-            <button class="btn">Deck laden</button>
+        <div class="test">
+          <div style="align-self: center;">
+            <label style="color: white;" for="name">Name: </label>
+            <input
+              class="input-min"
+              type="text"
+              id="name"
+              value=""
+              size="1"
+              placeholder="Name"
+            />
           </div>
 
+          <button class="btn">Deck leeren</button>
+        </div>
+        <div class="btn-group">
+          <button class="btn">Deck speichern</button>
+          <button class="btn">Deck teilen</button>
+          <button class="btn">Deck laden</button>
+        </div>
       </div>
 
-
-<!--
+      <!--
       <div>Number of Cards</div>
       <div>Number of Cards</div> -->
     </div>
@@ -36,7 +35,7 @@
         <div class="main-h">Main</div>
         <div class="cardzone" *ngFor="let item of maindeck; let i = index">
           <div class="deck-number-circle">
-            <div class="deck-number-number">{{i+1 | number: '2.'}}</div>
+            <div class="deck-number-number">{{ i + 1 | number: "2." }}</div>
           </div>
         </div>
       </div>
@@ -44,25 +43,95 @@
         <div class="main-h">Extra</div>
         <div class="cardzone" *ngFor="let item of extradeck; let i = index">
           <div class="deck-number-circle">
-            <div class="deck-number-number">{{i+1 | number: '2.'}}</div>
+            <div class="deck-number-number">{{ i + 1 | number: "2." }}</div>
           </div>
         </div>
       </div>
-    <div class="maindeck">
-      <div class="main-h">Side</div>
+      <div class="maindeck">
+        <div class="main-h">Side</div>
         <div class="cardzone" *ngFor="let item of sidedeck; let i = index">
           <div class="deck-number-circle">
-            <div class="deck-number-number">{{i+1 | number: '2.'}}</div>
+            <div class="deck-number-number">{{ i + 1 | number: "2." }}</div>
           </div>
         </div>
+      </div>
     </div>
-    </div>
-
-
   </div>
 
   <div class="cardlist">
-    <div class="filter">Filter</div>
+    <details>
+      <summary>
+        Filter
+      </summary>
+      <div class="filter">
+        <div>
+          <label>
+            Kartenart:
+            <select (change)="onCardTypeChanged($event.target.value)">
+              <!-- Below line will be looped through the keys and for every key, set label as value from enum pair and key as value attribute of <option> tag-->
+              <option value="None" label="None"></option>
+              <option
+                *ngFor="let key of filterCardTypeOptions"
+                [value]="key"
+                [label]="filterCardTypes[key]"
+              ></option>
+            </select>
+          </label>
+        </div>
+        <div [ngSwitch]="currentFilterCardType">
+          <div *ngSwitchCase="filterCardTypes.Monster">
+            <div>
+              <label>
+                Monster-Kartenart:
+                <select (change)="onMonsterCardTypeChanged($event.target.value)">
+                  <!-- Below line will be looped through the keys and for every key, set label as value from enum pair and key as value attribute of <option> tag-->
+                  <option value="None" label="None"></option>
+                  <option
+                    *ngFor="let key of filterMonstercardTypeOptions"
+                    [value]="key"
+                    [label]="filterMonstercardTypes[key]"
+                  ></option>
+                </select>
+              </label>
+            </div>
+          </div>
+           <div *ngSwitchCase="filterCardTypes.Spell">
+            <div>
+              <label>
+                Spell-Kartenart:
+                <select (change)="onSpellCardTypeChanged($event.target.value)">
+                  <!-- Below line will be looped through the keys and for every key, set label as value from enum pair and key as value attribute of <option> tag-->
+                  <option value="None" label="None"></option>
+                  <option
+                    *ngFor="let key of filterSpellcardTypeOptions"
+                    [value]="key"
+                    [label]="filterSpellcardTypes[key]"
+                  ></option>
+                </select>
+              </label>
+            </div>
+          </div>
+           <div *ngSwitchCase="filterCardTypes.Trap">
+            <div>
+              <label>
+                Trap-Kartenart:
+                <select (change)="onTrapCardTypeChanged($event.target.value)">
+                  <!-- Below line will be looped through the keys and for every key, set label as value from enum pair and key as value attribute of <option> tag-->
+                  <option value="None" label="None"></option>
+                  <option
+                    *ngFor="let key of filterTrapcardTypeOptions"
+                    [value]="key"
+                    [label]="filterTrapcardTypes[key]"
+                  ></option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </details>
+
     <div class="cardlist2"></div>
   </div>
 </div>
