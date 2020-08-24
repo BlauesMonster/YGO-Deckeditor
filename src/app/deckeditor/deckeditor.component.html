@@ -94,6 +94,34 @@
                 </select>
               </label>
             </div>
+             <div>
+              <label>
+                Attribute:
+                <select (change)="onAttributeTypeChanged($event.target.value)">
+                  <!-- Below line will be looped through the keys and for every key, set label as value from enum pair and key as value attribute of <option> tag-->
+                  <option value="None" label="None"></option>
+                  <option
+                    *ngFor="let key of filterAttributeTypeOptions"
+                    [value]="key"
+                    [label]="filterAttributeTypes[key]"
+                  ></option>
+                </select>
+              </label>
+            </div>
+             <div>
+              <label>
+               Race:
+                <select (change)="onRaceTypeChanged($event.target.value)">
+                  <!-- Below line will be looped through the keys and for every key, set label as value from enum pair and key as value attribute of <option> tag-->
+                  <option value="None" label="None"></option>
+                  <option
+                    *ngFor="let key of filterRaceTypeOptions"
+                    [value]="key"
+                    [label]="filterRaceTypes[key]"
+                  ></option>
+                </select>
+              </label>
+            </div>
           </div>
            <div *ngSwitchCase="filterCardTypes.Spell">
             <div>
