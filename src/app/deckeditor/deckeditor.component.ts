@@ -5,6 +5,7 @@ import { Trapcardicon } from './helper/Trapcardicon';
 import { Monstercardtype } from './helper/Monstercardtype';
 import { Attribute } from './helper/Attribute';
 import { Race } from './helper/Race';
+import { Ruling } from './helper/Ruling';
 
 @Component({
   selector: 'app-deckeditor',
@@ -22,6 +23,7 @@ export class DeckeditorComponent implements OnInit {
   public filterCardTypes = Cardtype;
   public filterCardTypeOptions = [];
   public currentFilterCardType: Cardtype | null = null
+  public selectedFilterCardTypeOptions = []
 
   public filterSpellcardTypes = Spellcardicon;
   public filterSpellcardTypeOptions = [];
@@ -35,6 +37,10 @@ export class DeckeditorComponent implements OnInit {
   public filterMonstercardTypeOptions = [];
   public currentFilterMonstercardType: Monstercardtype | null = null
 
+  public filterRulingTypes = Ruling;
+  public filterRulingTypeOptions = [];
+  public currentFilterRulingType: Ruling | null = null
+
   public filterAttributeTypes = Attribute;
   public filterAttributeTypeOptions = [];
   public currentFilterAttributeType: Attribute | null = null
@@ -42,6 +48,12 @@ export class DeckeditorComponent implements OnInit {
   public filterRaceTypes = Race;
   public filterRaceTypeOptions = [];
   public currentFilterRaceType: Race | null = null
+
+  public currentAtk: number | null = null
+  public currentDef: number | null = null
+  public currentLvl: number | null = null
+  public currentScale: number | null = null
+  public currentName: string | null = null
 
 
   ngOnInit(): void {
@@ -51,6 +63,7 @@ export class DeckeditorComponent implements OnInit {
     this.filterTrapcardTypeOptions = Object.keys(this.filterTrapcardTypes)
     this.filterRaceTypeOptions = Object.keys(this.filterRaceTypes)
     this.filterAttributeTypeOptions = Object.keys(this.filterAttributeTypes)
+    this.filterRulingTypeOptions = Object.keys(this.filterRulingTypes)
   }
 
   onCardTypeChanged(cardtype: Cardtype) {
@@ -73,17 +86,23 @@ export class DeckeditorComponent implements OnInit {
     //     console.log("n")
     //     break;
     // }
-    this.currentFilterCardType=cardtype
+    this.currentFilterCardType = cardtype
   }
 
   onMonsterCardTypeChanged(monstercardtype: Monstercardtype) {
     console.log(monstercardtype)
     this.currentFilterMonstercardType = monstercardtype
+    this.addTag(monstercardtype)
   }
 
   onSpellCardTypeChanged(spellcardtype: Spellcardicon) {
     console.log(spellcardtype)
     this.currentFilterSpellcardType = spellcardtype
+  }
+
+  onRulingChanged(ruling: Ruling) {
+    console.log(ruling)
+    this.currentFilterRulingType = ruling
   }
 
   onTrapCardTypeChanged(trapcardtype: Trapcardicon) {
@@ -99,6 +118,47 @@ export class DeckeditorComponent implements OnInit {
   onRaceTypeChanged(race: Race) {
     console.log(race)
     this.currentFilterRaceType = race
+  }
+
+  onRemoveTag(value: Monstercardtype) {
+    const index: number = this.selectedFilterCardTypeOptions.indexOf(value);
+    if (index !== -1) {
+      this.selectedFilterCardTypeOptions.splice(index, 1);
+    }
+  }
+
+  addTag(value: Monstercardtype) {
+    const index: number = this.selectedFilterCardTypeOptions.indexOf(value);
+    if (index === -1) {
+      this.selectedFilterCardTypeOptions.push(value);
+    }
+  }
+
+  onChangedAtk(value: number) {
+    console.log(value)
+    this.currentAtk=value
+  }
+  onChangedDef(value: number) {
+    console.log(value)
+    this.currentDef=value
+  }
+  onChangedLvl(value: number) {
+    console.log(value)
+    this.currentLvl= value
+  }
+  onChangedScale(value: number) {
+    console.log(value)
+    this.currentScale=value
+  }
+  onChangedName(value: string) {
+    console.log(value)
+    this.currentName = value
+  }
+  onClickedClear() {
+    console.log("Clear pressed!")
+  }
+  onClickedSearch() {
+    console.log("Search pressed!")
   }
 
 }

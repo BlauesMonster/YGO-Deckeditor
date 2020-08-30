@@ -5,8 +5,8 @@
     <div class="deck-menu">
       <div class="menu-border">
         <div class="test">
-          <div style="align-self: center;">
-            <label style="color: white;" for="name">Name: </label>
+          <div style="align-self: center">
+            <label style="color: white" for="name">Name: </label>
             <input
               class="input-min"
               type="text"
@@ -60,9 +60,7 @@
 
   <div class="cardlist">
     <details>
-      <summary>
-        Filter
-      </summary>
+      <summary>Filter</summary>
       <div class="filter">
         <div>
           <label>
@@ -81,9 +79,21 @@
         <div [ngSwitch]="currentFilterCardType">
           <div *ngSwitchCase="filterCardTypes.Monster">
             <div>
+              <div>
+                <div
+                  *ngFor="
+                    let item of selectedFilterCardTypeOptions;
+                    let i = index
+                  "
+                >
+                  {{ item }}<span (click)="onRemoveTag(item)">&#10006;</span>
+                </div>
+              </div>
               <label>
                 Monster-Kartenart:
-                <select (change)="onMonsterCardTypeChanged($event.target.value)">
+                <select
+                  (change)="onMonsterCardTypeChanged($event.target.value)"
+                >
                   <!-- Below line will be looped through the keys and for every key, set label as value from enum pair and key as value attribute of <option> tag-->
                   <option value="None" label="None"></option>
                   <option
@@ -94,7 +104,7 @@
                 </select>
               </label>
             </div>
-             <div>
+            <div>
               <label>
                 Attribute:
                 <select (change)="onAttributeTypeChanged($event.target.value)">
@@ -108,9 +118,9 @@
                 </select>
               </label>
             </div>
-             <div>
+            <div>
               <label>
-               Race:
+                Race:
                 <select (change)="onRaceTypeChanged($event.target.value)">
                   <!-- Below line will be looped through the keys and for every key, set label as value from enum pair and key as value attribute of <option> tag-->
                   <option value="None" label="None"></option>
@@ -122,8 +132,45 @@
                 </select>
               </label>
             </div>
+
+            <div>
+              <label for="atk">Atk:</label>
+              <input
+                (change)="onChangedAtk($event.target.value)"
+                type="number"
+                id="atk"
+                name="atk"
+              />
+            </div>
+            <div>
+              <label for="def">Def:</label>
+              <input
+                (change)="onChangedDef($event.target.value)"
+                type="number"
+                id="def"
+                name="def"
+              />
+            </div>
+            <div>
+              <label for="lvl">Lv/Rank/Link:</label>
+              <input
+                (change)="onChangedLvl($event.target.value)"
+                type="number"
+                id="lvl"
+                name="lvl"
+              />
+            </div>
+            <div>
+              <label for="scale">Scale:</label>
+              <input
+                (change)="onChangedScale($event.target.value)"
+                type="number"
+                id="scale"
+                name="scale"
+              />
+            </div>
           </div>
-           <div *ngSwitchCase="filterCardTypes.Spell">
+          <div *ngSwitchCase="filterCardTypes.Spell">
             <div>
               <label>
                 Spell-Kartenart:
@@ -139,7 +186,7 @@
               </label>
             </div>
           </div>
-           <div *ngSwitchCase="filterCardTypes.Trap">
+          <div *ngSwitchCase="filterCardTypes.Trap">
             <div>
               <label>
                 Trap-Kartenart:
@@ -156,7 +203,33 @@
             </div>
           </div>
         </div>
-
+        <div>
+          <label for="name">Name:</label>
+          <input
+            (change)="onChangedName($event.target.value)"
+            type="text"
+            id="name"
+            name="name"
+          />
+        </div>
+        <div>
+          <label>
+            Ruling:
+            <select (change)="onRulingChanged($event.target.value)">
+              <!-- Below line will be looped through the keys and for every key, set label as value from enum pair and key as value attribute of <option> tag-->
+              <option value="None" label="None"></option>
+              <option
+                *ngFor="let key of filterRulingTypeOptions"
+                [value]="key"
+                [label]="filterRulingTypes[key]"
+              ></option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <button (click)="onClickedClear()">Clear</button>
+          <button (click)="onClickedSearch()">Search</button>
+        </div>
       </div>
     </details>
 
