@@ -227,12 +227,78 @@
           </label>
         </div>
         <div>
+          <details>
+            <summary>Effect</summary>
+            <div class="effect">
+              <div *ngFor="let category of filterCategoryTypeOptionsCheckboxes">
+                <label>
+                  {{ category.value }}
+                  <input
+                    type="checkbox"
+                    (change)="
+                      onCategoryTypeChanged(
+                        category,
+                        $event.target.id,
+                        $event.target.checked
+                      )
+                    "
+                    [id]="category.value"
+                    [checked]="category.checked"
+                  />
+                </label>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div>
+          <details>
+            <summary>Link Marker</summary>
+            <div class="linkmarker">
+              <div
+                *ngFor="let linkmarker of filterLinkMarkerTypeOptionsCheckboxes"
+              >
+                <label>
+                  {{ linkmarker.value }}
+                  <input
+                    type="checkbox"
+                    (change)="
+                      onLinkMarkerChanged(
+                        linkmarker,
+                        $event.target.id,
+                        $event.target.checked
+                      )
+                    "
+                    [id]="linkmarker.value"
+                    [checked]="linkmarker.checked"
+                  />
+                </label>
+              </div>
+            </div>
+          </details>
+        </div>
+        <div>
           <button (click)="onClickedClear()">Clear</button>
           <button (click)="onClickedSearch()">Search</button>
         </div>
       </div>
     </details>
 
-    <div class="cardlist2"></div>
+    <div class="cardlist2" style="background-color: blueviolet;">
+      <div *ngFor="let item of maindeck">
+ <div class="singleCard" style="display: flex;">
+        <img class="cardimg" src="assets/unknown.jpg" />
+        <div style="margin: 0.0rem;">
+          <div style="margin: 0.4rem;     display: flex;
+    flex-wrap: wrap;">Blauäugiger weißer Drache - Hex versiegelte Fusion</div>
+          <div style="margin: 0.4rem;     display: flex;
+    flex-wrap: wrap;"><span style="padding-right: 1rem;">DIVINE / Ungeheuer-Krieger-Gott</span><span>Level 8</span></div>
+          <div style="margin: 0.4rem;     display: flex;
+    flex-wrap: wrap;"><span style="padding-right: 1rem;">10.000 / 10.000</span><span>13/13</span></div>
+        </div>
+      </div>
+      <hr >
+      </div>
+
+    </div>
   </div>
 </div>

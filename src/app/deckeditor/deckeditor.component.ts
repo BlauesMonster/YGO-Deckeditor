@@ -6,6 +6,9 @@ import { Monstercardtype } from './helper/Monstercardtype';
 import { Attribute } from './helper/Attribute';
 import { Race } from './helper/Race';
 import { Ruling } from './helper/Ruling';
+import { Category } from './helper/Category';
+import { Linkmarker } from './helper/Linkmarker';
+import { LinkMarker2 } from './helper/LinkMarker2';
 
 @Component({
   selector: 'app-deckeditor',
@@ -45,6 +48,16 @@ export class DeckeditorComponent implements OnInit {
   public filterAttributeTypeOptions = [];
   public currentFilterAttributeType: Attribute | null = null
 
+  public filterCategoryTypes = Category;
+  public filterCategoryTypeOptions = [];
+  public filterCategoryTypeOptionsCheckboxes = []
+  public selectedFilterCategoryType: Array<{ category: Category, checked: boolean }> = []
+
+  public filterLinkMarkerTypes = LinkMarker2;
+  public filterLinkMarkerOptions = [];
+  public filterLinkMarkerTypeOptionsCheckboxes = []
+  public selectedFilterLinkMarkerType: Array<{ category: LinkMarker2, checked: boolean }> = []
+
   public filterRaceTypes = Race;
   public filterRaceTypeOptions = [];
   public currentFilterRaceType: Race | null = null
@@ -64,6 +77,12 @@ export class DeckeditorComponent implements OnInit {
     this.filterRaceTypeOptions = Object.keys(this.filterRaceTypes)
     this.filterAttributeTypeOptions = Object.keys(this.filterAttributeTypes)
     this.filterRulingTypeOptions = Object.keys(this.filterRulingTypes)
+
+    this.filterCategoryTypeOptions = Object.keys(this.filterCategoryTypes)
+    this.filterCategoryTypeOptions.forEach(value => this.filterCategoryTypeOptionsCheckboxes.push({ value, checked: false }))
+
+    this.filterLinkMarkerOptions = Object.keys(this.filterLinkMarkerTypes)
+    this.filterLinkMarkerOptions.forEach(value => this.filterLinkMarkerTypeOptionsCheckboxes.push({ value, checked: false }))
   }
 
   onCardTypeChanged(cardtype: Cardtype) {
@@ -120,6 +139,20 @@ export class DeckeditorComponent implements OnInit {
     this.currentFilterRaceType = race
   }
 
+  onCategoryTypeChanged(category: { category: Category, checked: boolean }, id: any, checked: boolean) {
+    console.log(category, id, checked)
+    category.checked = checked
+    this.selectedFilterCategoryType = this.filterCategoryTypeOptionsCheckboxes.filter(value => value.checked === true)
+    console.log(this.selectedFilterCategoryType)
+  }
+
+  onLinkMarkerChanged(category: { category: LinkMarker2, checked: boolean }, id: any, checked: boolean) {
+    console.log(category, id, checked)
+    category.checked = checked
+    this.selectedFilterLinkMarkerType = this.filterLinkMarkerTypeOptionsCheckboxes.filter(value => value.checked === true)
+    console.log(this.selectedFilterLinkMarkerType)
+  }
+
   onRemoveTag(value: Monstercardtype) {
     const index: number = this.selectedFilterCardTypeOptions.indexOf(value);
     if (index !== -1) {
@@ -136,19 +169,19 @@ export class DeckeditorComponent implements OnInit {
 
   onChangedAtk(value: number) {
     console.log(value)
-    this.currentAtk=value
+    this.currentAtk = value
   }
   onChangedDef(value: number) {
     console.log(value)
-    this.currentDef=value
+    this.currentDef = value
   }
   onChangedLvl(value: number) {
     console.log(value)
-    this.currentLvl= value
+    this.currentLvl = value
   }
   onChangedScale(value: number) {
     console.log(value)
-    this.currentScale=value
+    this.currentScale = value
   }
   onChangedName(value: string) {
     console.log(value)
