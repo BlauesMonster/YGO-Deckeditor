@@ -194,4 +194,15 @@ export class DeckeditorComponent implements OnInit {
     console.log("Search pressed!")
   }
 
+  closeModal() {
+    this.showModal = false
+  }
+
+  openModal() {
+    this.showModal = true
+    console.log(this.showModal)
+  }
+
+  public showModal: boolean
+
 }
